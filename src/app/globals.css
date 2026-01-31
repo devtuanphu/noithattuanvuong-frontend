@@ -1,26 +1,465 @@
 @import "tailwindcss";
 
+/* ===== BRAND COLORS ===== */
 :root {
+  --primary: #1a3a5c;
+  --primary-dark: #0f2640;
+  --primary-light: #2a5580;
+  --accent: #3eb5b8;
+  --accent-light: #5fcacd;
+  --gold: #c9a962;
+  --gold-light: #d4b97a;
+
+  --text-dark: #2c2c2c;
+  --text-medium: #555555;
+  --text-light: #888888;
+
   --background: #ffffff;
-  --foreground: #171717;
+  --background-alt: #f8f9fa;
+  --background-dark: #f0f2f5;
+
+  --border-color: #e5e7eb;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+
+  --foreground: var(--text-dark);
+
+  /* Font Variables */
+  --font-body: var(--font-open-sans), "Open Sans", Arial, sans-serif;
+  --font-heading: var(--font-poppins), "Poppins", Arial, sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-alt: var(--background-alt);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-gold: var(--gold);
+  --font-sans: var(--font-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ===== BASE STYLES ===== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto !important;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* ===== SCROLLBAR HIDE UTILITY ===== */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===== TYPOGRAPHY ===== */
+/* 
+  Font System:
+  - Poppins: Headings (h1-h6), buttons, navigation, labels
+  - Open Sans: Body text, paragraphs, descriptions
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text-dark);
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* ===== SECTION STYLES ===== */
+.section {
+  padding: 4rem 0;
+}
+
+.section-alt {
+  background: var(--background-alt);
+}
+
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--accent);
+  margin: 0.75rem auto 0;
+}
+
+.section-title span {
+  color: var(--accent);
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-accent:hover {
+  background: var(--accent-light);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px var(--shadow-color);
+}
+
+.card-image {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 1rem;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.card-description {
+  font-size: 0.875rem;
+  color: var(--text-light);
+}
+
+/* ===== GRID LAYOUTS ===== */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+/* ===== FLOATING BUTTONS ===== */
+.floating-buttons {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.floating-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--primary);
+  color: white;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-size: 0.75rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.floating-btn:hover {
+  width: 100px;
+  background: var(--accent);
+}
+
+.floating-btn.zalo {
+  background: #0068ff;
+}
+
+.floating-btn.phone {
+  background: #25d366;
+}
+
+/* ===== IMAGE OVERLAY ===== */
+.image-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.image-overlay:hover::before {
+  opacity: 1;
+}
+
+.image-overlay img {
+  transition: transform 0.5s ease;
+}
+
+.image-overlay:hover img {
+  transform: scale(1.1);
+}
+
+/* ===== FORM STYLES ===== */
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(62, 181, 184, 0.2);
+}
+
+.form-input::placeholder {
+  color: var(--text-light);
+}
+
+/* ===== UTILITY CLASSES ===== */
+.text-primary {
+  color: var(--primary);
+}
+.text-accent {
+  color: var(--accent);
+}
+.text-gold {
+  color: var(--gold);
+}
+.bg-primary {
+  background-color: var(--primary);
+}
+.bg-primary-dark {
+  background-color: var(--primary-dark);
+}
+.bg-accent {
+  background-color: var(--accent);
+}
+
+/* ===== RESPONSIVE HIDE/SHOW ===== */
+.hide-mobile {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .hide-mobile {
+    display: block;
+  }
+  .hide-desktop {
+    display: none;
+  }
 }
