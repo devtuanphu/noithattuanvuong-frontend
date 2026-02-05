@@ -63,7 +63,7 @@ export default async function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-6">
               <Image
-                src="/images/logo.png"
+                src="/images/logo.webp"
                 alt="Nội Thất Tuấn Vương"
                 width={240}
                 height={96}

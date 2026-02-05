@@ -103,7 +103,7 @@ export default function HeaderClient({ navData, contactInfo }: HeaderClientProps
             {/* Logo */}
             <Link href="/" className="flex items-center shrink-0">
               <Image
-                src="/images/logo.png"
+                src="/images/logo.webp"
                 alt="Nội Thất Tuấn Vương"
                 width={320}
                 height={112}
@@ -136,7 +136,7 @@ export default function HeaderClient({ navData, contactInfo }: HeaderClientProps
             {/* Centered Logo */}
             <Link href="/" className="flex items-center">
               <Image
-                src="/images/logo.png"
+                src="/images/logo.webp"
                 alt="Nội Thất Tuấn Vương"
                 width={200}
                 height={70}
@@ -248,7 +248,7 @@ export default function HeaderClient({ navData, contactInfo }: HeaderClientProps
         <div className="flex justify-between items-center p-4 border-b border-gray-100">
           <Link href="/" onClick={() => setMobileMenuOpen(false)}>
             <Image
-              src="/images/logo.png"
+              src="/images/logo.webp"
               alt="Nội Thất Tuấn Vương"
               width={200}
               height={70}
